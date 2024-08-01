@@ -1,0 +1,55 @@
+.dashboard-main-container {
+    height: 100vh;
+    display: flex;
+    background-color: red;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins';
+  }
+  
+  .dashboard-box {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: blue;
+    flex-direction: column;
+  }
+
+  .navbar {
+    height: 10%;
+    width: 100%;
+    background-color: yellow;
+    display: flex; /* Use flexbox to align items */
+    align-items: center; /* Center items vertically */
+  }
+  
+  .navbar-left {
+    width: 20%;
+    margin-left: 1%;
+    height: 90%; /* Use full height of the navbar */
+    background-color: transparent;
+    display: flex; /* Use flexbox for alignment */
+    align-items: center; /* Center items vertically */
+    padding-left: 2%; /* Add some padding for spacing */
+    background-image: url('../images/ReferMeText.webp');
+    background-size: contain; /* Ensure the image fits within the div */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
+    background-position: center;
+  }
+  
+  
+
+
+  .middle-box{
+    height:60%;
+    background-color: pink;
+    width: 100%;
+  }
+  
+  .bottom-box{
+    height:30%;
+    background-color: green;
+    width: 100%;
+  }
