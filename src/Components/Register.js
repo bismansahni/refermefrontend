@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { register } from '../services/api';
+import '../styles/Register.css'
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -23,23 +24,48 @@ const Register = () => {
     }
   };
 
-  return (
-    <form onSubmit={onSubmit}>
-      <div>
-        <label>Name</label>
-        <input type="text" name="name" value={name} onChange={onChange} required />
-      </div>
-      <div>
-        <label>Email</label>
-        <input type="email" name="email" value={email} onChange={onChange} required />
-      </div>
-      <div>
-        <label>Password</label>
-        <input type="password" name="password" value={password} onChange={onChange} required />
-      </div>
-      <button type="submit">Register</button>
-    </form>
-  );
-};
+//   return (
+//     <form onSubmit={onSubmit}>
+//       <div>
+//         <label>Name</label>
+//         <input type="text" name="name" value={name} onChange={onChange} required />
+//       </div>
+//       <div>
+//         <label>Email</label>
+//         <input type="email" name="email" value={email} onChange={onChange} required />
+//       </div>
+//       <div>
+//         <label>Password</label>
+//         <input type="password" name="password" value={password} onChange={onChange} required />
+//       </div>
+//       <button type="submit">Register</button>
+//     </form>
+//   );
+// };
 
+// export default Register;
+
+
+return (
+  <div className="main-register-container">
+    <div className="register-box">
+      <div className="register-box-left"></div>
+        <div className="register-box-right">
+          <div className="heading-box">
+          <h2>Register Now!</h2>
+          </div>
+          <div className="form-box">
+         
+          </div>
+          <div className="button-box">
+            
+          </div>
+   
+     
+
+      </div>
+    </div>
+  </div>
+)
+};
 export default Register;

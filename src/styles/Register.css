@@ -1,0 +1,85 @@
+.main-register-container{
+    height: 100vh;
+    display: flex;
+    background-color: red;
+    justify-content: center;
+   align-items: center;
+}
+
+.register-box {
+    display: flex;
+    width: 90%;
+    height: 90%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: white;
+   
+}
+
+.register-box-left{
+    width: 57%;
+    background-color: green;
+}
+
+.register-box-right{
+    width: 43%;
+    background-color: blue;
+    /* justify-content: center; */
+    /* align-items: center; */
+    display: flex;
+    color: wheat;
+    flex-direction: column;
+
+  
+  
+}
+
+
+
+
+/* .heading-box{
+  height: 20%;
+  width: 100vh;
+    background-color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.heading-box h2 {
+    font-size: 24px; 
+    font-weight: bold; 
+  
+  } */
+
+  .heading-box {
+    width: 100%;
+    background-color: black;
+    color: white;
+    text-align: center; 
+    box-sizing: border-box;
+    display: flex;
+    align-items: center; 
+    justify-content: center;
+    height: 17%; 
+  }
+  
+ 
+  .heading-box h2 {
+    margin: 0; 
+    font-size: 2em; 
+    font-weight: bold; 
+    font-family: 'Poppins'
+  }
+.form-box{
+    height: 63%;
+    background-color: yellow;
+    width: 100vh;
+
+}
+.button-box{
+    height:20%;
+    background-color: gold;
+    
+}
