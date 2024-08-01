@@ -10,6 +10,8 @@ const Register = () => {
     password: ''
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [animation, setAnimation] = useState('');
   const { name, email, password } = formData;
   const navigate = useNavigate(); 
 
@@ -20,10 +22,13 @@ const Register = () => {
     try {
       const response = await register(name, email, password);
       console.log('Registration successful:', response);
-      navigate('/dashboard')
-      // Handle successful registration (e.g., redirect to login page)
+      localStorage.setItem('token', response.token);
+      setAnimation('slide-left'); // Apply the slide left animation class
+      setTimeout(() => navigate('/dashboard'), 500);
+     
     } catch (error) {
       console.error('Registration failed:', error);
+      setIsLoading(false);
     }
   };
 
@@ -91,7 +96,7 @@ const Register = () => {
 
 
 return (
-  <div className="main-register-container">
+  <div className={`main-register-container ${animation}`}>
     <div className="register-box">
       <div className="register-box-left"></div>
         <div className="register-box-right">

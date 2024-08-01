@@ -9,6 +9,8 @@ const Login = () => {
     password: ''
   });
 
+  const [isLoading, setIsLoading] = useState(false);
+  const [animation, setAnimation] = useState(''); 
   const { email, password } = formData;
   const navigate = useNavigate();
 
@@ -16,13 +18,16 @@ const Login = () => {
 
   const onSubmit = async e => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const response = await login(email, password);
       console.log('Login successful:', response);
       localStorage.setItem('token', response.token);
-      navigate('/dashboard'); // Redirect to dashboard after login
+      setAnimation('slide-left'); 
+      setTimeout(() => navigate('/dashboard'), 500); 
     } catch (error) {
       console.error('Login failed:', error);
+      setIsLoading(false); 
     }
   };
 
@@ -48,7 +53,7 @@ const Login = () => {
 
 
 return (
-  <div className="main-register-container">
+  <div className={`main-register-container ${animation}`}>
     <div className="register-box">
       <div className="register-box-left"></div>
         <div className="register-box-right">
@@ -78,3 +83,6 @@ return (
 };
 
 export default Login;
+
+
+
