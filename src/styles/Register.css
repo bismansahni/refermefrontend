@@ -78,6 +78,46 @@
     width: 100vh;
 
 }
+
+.form-group {
+    margin-bottom: 7%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+  
+  background-color: yellow;
+  }
+
+
+
+  .form-group input {
+    align-items: center;
+      padding: 1.5%; 
+      border: none;
+      border-bottom: 2px solid #ccc;
+      font-size: 1.2em; 
+      outline: none;
+      color: yellow; 
+      width: 40%;
+   justify-self: center;
+    }
+  
+   .form-group label {
+    font-size: 1.2em; 
+    margin-bottom: 1%; 
+    color: #888; 
+    text-align: center;
+  } 
+   
+
+  
+  
+  .form-group input:focus {
+    border-bottom: 2px solid #6a11cb; /* Purple color on focus */
+  }
+  
 .button-box{
     height:20%;
     background-color: gold;
