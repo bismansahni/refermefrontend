@@ -70,16 +70,18 @@
     margin-left: 5%;
     background-color: transparent;
     border: none;
-    border-bottom: 2px solid #ccc; /* Ensure a bottom border for visibility */
+    border-bottom: 2px solid #6a11cb; /* Ensure a bottom border for visibility */
     outline: none;
     font-size: 1.2em; /* Ensure font size remains large */
     color: black; /* Ensure input text is visible */
+    font-family: 'Poppins';
   }
   
   .form-group input::placeholder {
     color: #ccc;
     font-size: 1.2em; /* Match the input font size */
     opacity: 1; /* Ensure the placeholder is visible */
+    font-family: 'Poppins';
   }
   
   .form-group input:focus {
@@ -87,11 +89,13 @@
     color: black;
     font-family: 'Poppins';
     font-size: 1.2em;
+    font-family: 'Poppins';
   }
   
   .form-group input:not(:placeholder-shown) {
     font-size: 1.2em; /* Ensure font size remains large after input */
     color: black; /* Ensure input text is visible */
+    font-family: 'Poppins';
   }
   
   .form-group label {
@@ -102,19 +106,44 @@
     text-align: left;
     margin-left: 5%;
   }
-  
   .button-box {
-    height: 20%;
+    height: 25%;
     background-color: gold;
     justify-content: center;
     display: flex;
     align-items: center;
     font-family: 'Poppins';
+    border: none;
   }
   
   .button-box button {
-    height: 20%;
+    height: 20%; /* Adjusted for relative height */
     width: 50%;
     font-family: 'Poppins';
+    font-size: 1.2em; /* Increase font size */
+    font-weight: bold; /* Make the text bold */
+    color: white; /* Button text color */
+    background-color: #6a11cb; /* Base color */
+    background-image: linear-gradient(to right, #6a11cb, #8e24aa); /* Gradient */
+    border: none;
+    border-radius: 0.5em; /* Fully rounded */
+    cursor: pointer;
+    box-shadow: 0 0.25em 0.375em rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .button-box button:hover {
+    background-image: linear-gradient(to right, #8e24aa, #6a11cb); /* Hover effect */
+    box-shadow: 0 0.375em 0.5em rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+    transform: translateY(-0.125em); /* Slight lift on hover */
+  }
+  
+  .button-box button:active {
+    background-image: linear-gradient(to right, #6a11cb, #8e24aa); /* Active state */
+    box-shadow: 0 0.125em 0.25em rgba(0, 0, 0, 0.1); /* Reduced shadow on click */
+    transform: translateY(0.0625em); /* Slight press effect */
   }
   
