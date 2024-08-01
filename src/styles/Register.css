@@ -1,156 +1,120 @@
-.main-register-container{
+.main-register-container {
     height: 100vh;
     display: flex;
     background-color: red;
     justify-content: center;
-   align-items: center;
-      font-family: 'Poppins'
-
-}
-
-.register-box {
+    align-items: center;
+    font-family: 'Poppins';
+  }
+  
+  .register-box {
     display: flex;
     width: 90%;
     height: 90%;
     border-radius: 10px;
     overflow: hidden;
     background-color: white;
-   
-}
-
-.register-box-left{
+  }
+  
+  .register-box-left {
     width: 57%;
     background-color: green;
-}
-
-.register-box-right{
+  }
+  
+  .register-box-right {
     width: 43%;
     background-color: blue;
-    /* justify-content: center; */
-    /* align-items: center; */
     display: flex;
     color: wheat;
     flex-direction: column;
-
+  }
   
-  
-}
-
-
-
-
-/* .heading-box{
-  height: 20%;
-  width: 100vh;
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-}
-
-.heading-box h2 {
-    font-size: 24px; 
-    font-weight: bold; 
-  
-  } */
-
   .heading-box {
     width: 100%;
     background-color: black;
     color: white;
-    text-align: center; 
+    text-align: center;
     box-sizing: border-box;
     display: flex;
-    align-items: center; 
+    align-items: center;
     justify-content: center;
-    height: 17%; 
+    height: 17%;
   }
   
- 
   .heading-box h2 {
-    margin: 0; 
-    font-size: 2em; 
-    font-weight: bold; 
-    font-family: 'Poppins'
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+    font-family: 'Poppins';
   }
-.form-box{
+  
+  .form-box {
     height: 63%;
     background-color: yellow;
     width: 100vh;
-
-}
-
-.form-group {
-   width: 100%;
-     display: flex;
-    /* justify-content: center; */
-    /* align-items: center;  */
-    flex-direction: column;
-  background-color: yellow;
-  text-align: center;
-  margin-top: 5%;
   }
-
-
-
+  
+  .form-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: yellow;
+    text-align: center;
+    margin-top: 5%;
+  }
+  
   .form-group input {
     height: 20%;
     width: 50%;
     margin-bottom: 4%;
-   column-width: 10%;
-   margin-left: 5%;
-   background-color: transparent;
-   border: none;
-   outline: none;
-    }
-
-    .form-group input::placeholder {
-        color: #ccc;
-        font-size: 1em;
-        opacity: 1; /* Ensure the placeholder is visible */
-        
-      }
-      
-      .form-group input:focus {
-        border-bottom: 2px solid #6a1b9a; /* Change border color on focus */
-        color: #6a1b9a; /* Change text color on focus */
-      }
-   .form-group label {
+    margin-left: 5%;
+    background-color: transparent;
+    border: none;
+    border-bottom: 2px solid #ccc; /* Ensure a bottom border for visibility */
+    outline: none;
+    font-size: 1.2em; /* Ensure font size remains large */
+    color: black; /* Ensure input text is visible */
+  }
+  
+  .form-group input::placeholder {
+    color: #ccc;
+    font-size: 1.2em; /* Match the input font size */
+    opacity: 1; /* Ensure the placeholder is visible */
+  }
+  
+  .form-group input:focus {
+    border-bottom: 2px solid #6a11cb; /* Purple color on focus */
+    color: black;
+    font-family: 'Poppins';
+    font-size: 1.2em;
+  }
+  
+  .form-group input:not(:placeholder-shown) {
+    font-size: 1.2em; /* Ensure font size remains large after input */
+    color: black; /* Ensure input text is visible */
+  }
+  
+  .form-group label {
     height: 20%;
     width: 50%;
     color: blue;
     margin-bottom: 2%;
     text-align: left;
-    margin-left: 5%
-
-  } 
-   
-
-  
-  
-  .form-group input:focus {
-    border-bottom: 2px solid #6a11cb; /* Purple color on focus */
-    color: black;
-     font-family: 'Poppins';
-     font-size: large;
-    
+    margin-left: 5%;
   }
   
-.button-box{
-    height:20%;
+  .button-box {
+    height: 20%;
     background-color: gold;
     justify-content: center;
     display: flex;
     align-items: center;
-       font-family: 'Poppins'
-    
-}
-
-.button-box button{
-    height:20%;
+    font-family: 'Poppins';
+  }
+  
+  .button-box button {
+    height: 20%;
     width: 50%;
-       font-family: 'Poppins'
-    
-}
-
+    font-family: 'Poppins';
+  }
+  
