@@ -2,10 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { getNotifications } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Dashboard.css';
-
 const Dashboard = () => {
   const [notifications, setNotifications] = useState([]);
   const navigate = useNavigate();
+  const [dropdownVisible, setDropdownVisible] = useState(false);
+
+  const toggleDropdown = () => {
+    setDropdownVisible(!dropdownVisible);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    navigate('/login');
+  };
+
+  const dropdownItems = [
+    { name: 'Profile Settings', action: () => navigate('/update-profile') },
+    { name: 'Logout', action: handleLogout },
+  ];
 
   useEffect(() => {
     const fetchNotifications = async () => {
@@ -25,10 +39,7 @@ const Dashboard = () => {
     fetchNotifications();
   }, [navigate]);
 
-  const handleLogout = () => {
-    localStorage.removeItem('token');
-    navigate('/login');
-  };
+
 
 //   return (
 //     <div>
@@ -53,17 +64,75 @@ const Dashboard = () => {
 // export default Dashboard;
 
 
-return(
-  <div className="dashboard-main-container">
-  <div className="dashboard-box">
-    <div className="navbar"> 
-      <div className="navbar-left">
-      </div> </div>
-    <div className="middle-box"> </div>
-    <div className='bottom-box'></div>
 
-  </div>
+// return (
+//   <div className="dashboard-main-container">
+//     <div className="dashboard-box">
+//       <div className="navbar"> 
+//         <div className="navbar-left"></div>
+//         <div className="navbar-right" onClick={toggleDropdown}> 
+//           <h2>
+//             Account Settings
+//             <span className={`dropdown-arrow ${dropdownVisible ? 'rotate' : ''}`}>
+//               ▼
+//             </span>
+//           </h2>
+//           <div className={`dropdown ${dropdownVisible ? 'show-dropdown' : ''}`}>
+//             {dropdownItems.map((item, index) => (
+//               <button
+//                 key={index}
+//                 onClick={item.action}
+//                 className="dropdown-button"
+//               >
+//                 {item.name}
+//               </button>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+//       <div className="middle-box"></div>
+//       <div className="bottom-box"></div>
+//     </div>
+//   </div>
+// );
+// };
+
+// export default Dashboard;
+
+
+return (
+  <div className="dashboard-main-container">
+    <div className="dashboard-box">
+      <div className="navbar"> 
+        <div className="navbar-left"></div>
+        <div className="navbar-right"> 
+          <h2>
+            Account Settings
+            <span 
+              className={`dropdown-arrow ${dropdownVisible ? 'rotate' : ''}`}
+              onClick={toggleDropdown}
+            >
+              ▼
+            </span>
+          </h2>
+          <div className={`dropdown ${dropdownVisible ? 'show-dropdown' : ''}`}>
+            {dropdownItems.map((item, index) => (
+              <button
+                key={index}
+                onClick={item.action}
+                className="dropdown-button"
+              >
+                {item.name}
+              </button>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="middle-box"></div>
+      <div className="bottom-box"></div>
+    </div>
   </div>
 );
 };
+
 export default Dashboard;
