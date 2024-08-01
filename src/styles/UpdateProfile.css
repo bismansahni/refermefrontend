@@ -6,6 +6,15 @@
     align-items: center;
     font-family: 'Poppins';
   }
+
+
+  .updated-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
   
   .register-box {
     display: flex;
