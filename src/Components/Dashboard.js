@@ -128,8 +128,24 @@ return (
           </div>
         </div>
       </div>
-      <div className="middle-box"></div>
-      <div className="bottom-box"></div>
+      <div className="middle-box">
+      <div className="middle-box">
+     
+        <h1>Get Referred to Your Dream Job!</h1>
+        <h1>Become a Referrer and Help Others Succeed!</h1>
+    
+     {/* and experience to help others get their dream jobs. Become a referrer and make a positive impact on someone's career.</p> */}
+      </div>
+
+      </div>
+      <div className="bottom-box">
+        <div className="left-box">
+        <button> Be a Referrer</button>
+        </div>
+        <div className="right-box">
+       <button> Get Referred</button>
+        </div>
+      </div>
     </div>
   </div>
 );
