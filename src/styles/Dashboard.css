@@ -229,3 +229,17 @@
     text-align: center; /* Center align the text */
     padding: 2%; /* Add some padding */
   }
+
+  @keyframes slideLeft {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+  
+  .slide-left {
+    animation: slideLeft 0.5s forwards;
+  }
+  

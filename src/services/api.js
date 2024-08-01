@@ -32,3 +32,11 @@ export const getNotifications = async (token) => {
   });
   return response.data;
 };
+
+
+export const getProfile = async (token) => {
+  const response = await axios.get(`${API_URL}/api/user/profile`, {
+    headers: { Authorization: `Bearer ${token}` },
+  });
+  return response.data;
+};
