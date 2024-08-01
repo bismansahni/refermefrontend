@@ -214,6 +214,7 @@ import '../styles/UpdateProfile.css';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import '../styles/Toastify.css';
 
 const UpdateProfile = () => {
   const [formData, setFormData] = useState({
@@ -253,7 +254,7 @@ const UpdateProfile = () => {
       try {
         const response = await updateProfile(token, formData);
         console.log('Profile update successful:', response);
-        toast.success('Profile updated successfully!');
+        toast.success('Profile updated successfully!',{icon:false});
         setIsEditable(false);
       } catch (error) {
         console.error('Profile update failed:', error);

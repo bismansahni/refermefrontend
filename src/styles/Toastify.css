@@ -1,0 +1,31 @@
+/* Toastify.css */
+
+.toast-container {
+    font-family: 'Poppins', sans-serif;
+}
+
+.Toastify__toast-container {
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    border-radius: 10px;
+}
+
+.Toastify__toast {
+    background-color: white;
+    color: #6a11cb;
+    border-radius: 10px;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 3px solid #6a11cb;
+    font-weight: bold;  
+}
+
+.Toastify__toast-body {
+    font-size: 1.2em;
+}
+
+.Toastify__progress-bar {
+    background-color: #8e24aa;
+}
