@@ -1,8 +1,4 @@
-
-
-
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/Dashboard.css';
 import { getProfile } from '../services/api'; // Import getProfile function
@@ -11,6 +7,7 @@ const Dashboard = () => {
   const navigate = useNavigate();
   const [dropdownVisible, setDropdownVisible] = useState(false);
   const [animation, setAnimation] = useState('');
+  const [profileData, setProfileData] = useState(null);
 
   const toggleDropdown = () => {
     setDropdownVisible(!dropdownVisible);
@@ -21,15 +18,25 @@ const Dashboard = () => {
     navigate('/login');
   };
 
-  const handleProfileSettings = async () => {
-    const token = localStorage.getItem('token');
-    try {
-      await getProfile(token); // Prefetch profile data
-      setAnimation('slide-left');
-      setTimeout(() => navigate('/update-profile'), 500); // Redirect after animation
-    } catch (error) {
-      console.error('Failed to fetch profile data:', error);
-    }
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      const token = localStorage.getItem('token');
+      if (token) {
+        try {
+          const profile = await getProfile(token);
+          setProfileData(profile);
+        } catch (error) {
+          console.error('Failed to fetch profile data:', error);
+        }
+      }
+    };
+
+    fetchProfileData();
+  }, []);
+
+  const handleProfileSettings = () => {
+    setAnimation('slide-left');
+    setTimeout(() => navigate('/update-profile', { state: { profileData } }), 500); // Redirect after animation
   };
 
   const dropdownItems = [
