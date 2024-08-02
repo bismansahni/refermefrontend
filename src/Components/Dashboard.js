@@ -38,6 +38,7 @@ const Dashboard = () => {
     setAnimation('slide-left');
     setTimeout(() => navigate('/update-profile', { state: { profileData } }), 500); // Redirect after animation
   };
+  
 
   const dropdownItems = [
     { name: 'Profile Settings', action: handleProfileSettings },
