@@ -6,6 +6,7 @@ import UpdateProfile from './Components/UpdateProfile';
 import RequestReferral from './Components/RequestReferral';
 import Notifications from './Components/Notifications';
 import Dashboard from './Components/Dashboard';
+import GetReferred from './Components/GetReferred';
 
 const App = () => (
   <Router>
@@ -18,6 +19,7 @@ const App = () => (
         <Route path="/request-referral" element={<RequestReferral />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/notifications" element={<Notifications />} />
+        <Route path="/get-referred" element={<GetReferred />} />
         {/* Add other routes here */}
       </Routes>
     </div>
