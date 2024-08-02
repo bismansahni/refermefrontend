@@ -119,8 +119,9 @@ const BeReferrer = () => {
           <div className="middle-right">
             {selectedRequest ? (
               <div className="request-details">
-                <h2>{selectedRequest.user.name}</h2>
+               
                 <div className="job-details">
+                <h1>{selectedRequest.user.name}</h1>
                   <p><strong>Current Job Role:</strong> {selectedRequest.user.current_job_role}</p>
                   <p><strong>Current Company:</strong> {selectedRequest.user.current_company}</p>
                   <p><strong>Target Job:</strong> {selectedRequest.target_job}</p>
