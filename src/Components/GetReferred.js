@@ -14,6 +14,7 @@ const GetReferred = () => {
 
   const [profileData, setProfileData] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const [showForm, setShowForm] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [animation, setAnimation] = useState('');
   const { company_name, job_url } = formData;
@@ -58,7 +59,15 @@ const GetReferred = () => {
   const handleConfirmProfile = () => {
     setShowPopup(false);
     toast.success('Referral request successful!', { icon: false });
-  };
+
+    // Clear the content of the page after the toast notification
+    setTimeout(() => {
+        setFormData({
+          company_name: '',
+          job_url: ''
+        });
+      }, 5000); // Adjust the delay as needed
+    };
 
   const handleUpdateProfile = () => {
     navigate('/update-profile', { state: { profileData } });
@@ -71,29 +80,31 @@ const GetReferred = () => {
   return (
     <div className={`main-register-container ${animation}`}>
       <ToastContainer />
-      <div className="register-box">
-        <div className="register-box-left"></div>
-        <div className="register-box-right">
-          <div className="heading-box">
-            <h2>Request Referral</h2>
-          </div>
-          <div className="form-box">
-            <form onSubmit={onSubmit}>
-              <div className="form-group">
-                <label htmlFor="company_name">Company Name</label>
-                <input type="text" id="company_name" name="company_name" value={company_name} onChange={onChange} required />
-              </div>
-              <div className="form-group">
-                <label htmlFor="job_url">Job URL</label>
-                <input type="text" id="job_url" name="job_url" value={job_url} onChange={onChange} required />
-              </div>
-            </form>
-          </div>
-          <div className="button-box">
-            <button type="submit" onClick={onSubmit}>Request Referral</button>
+      {showForm && (
+        <div className="register-box">
+          <div className="register-box-left"></div>
+          <div className="register-box-right">
+            <div className="heading-box">
+              <h2>Request Referral</h2>
+            </div>
+            <div className="form-box">
+              <form onSubmit={onSubmit}>
+                <div className="form-group">
+                  <label htmlFor="company_name">Company Name</label>
+                  <input type="text" id="company_name" name="company_name" value={company_name} onChange={onChange} required />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="job_url">Job URL</label>
+                  <input type="text" id="job_url" name="job_url" value={job_url} onChange={onChange} required />
+                </div>
+              </form>
+            </div>
+            <div className="button-box">
+              <button type="submit" onClick={onSubmit}>Request Referral</button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
 
       {showPopup && profileData && (
         <div className="popup-overlay">
