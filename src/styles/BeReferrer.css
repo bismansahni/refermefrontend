@@ -1,0 +1,20 @@
+.main-container {
+    height: 100vh;
+    display: flex;
+    background-color: black;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+    padding-top: 5vh; /* Space from the top */
+  }
+  
+  .main-notification-container {
+    padding: 2em;
+    background-color: white;
+    height: 85%;
+    width: 75%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better visibility */
+    border-radius: 10px; /* Optional: Add some border radius for rounded corners */
+    text-align: center; /* Optional: Center the text inside the container */
+  }
+  
