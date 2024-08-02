@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { requestReferral } from '../services/api';
+import { requestReferral, getProfile } from '../services/api';
 import { useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Register.css';
+import '../styles/Popup.css'; // Ensure you have this CSS file
 
 const GetReferred = () => {
   const [formData, setFormData] = useState({
@@ -11,6 +12,8 @@ const GetReferred = () => {
     job_url: ''
   });
 
+  const [profileData, setProfileData] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [animation, setAnimation] = useState('');
   const { company_name, job_url } = formData;
@@ -33,7 +36,13 @@ const GetReferred = () => {
       try {
         const response = await requestReferral(token, formData);
         console.log('Referral request successful:', response);
-        toast.success('Referral request successful!', { icon: false });
+
+        // Fetch profile data
+        const profile = await getProfile(token);
+        console.log('Fetched profile data:', profile);
+        setProfileData(profile);
+        setShowPopup(true);
+
         setIsLoading(false);
       } catch (error) {
         console.error('Referral request failed:', error);
@@ -44,6 +53,19 @@ const GetReferred = () => {
       toast.error('No token found. Please log in.');
       setIsLoading(false);
     }
+  };
+
+  const handleConfirmProfile = () => {
+    setShowPopup(false);
+    toast.success('Referral request successful!', { icon: false });
+  };
+
+  const handleUpdateProfile = () => {
+    navigate('/update-profile', { state: { profileData } });
+  };
+
+  const handleClosePopup = () => {
+    setShowPopup(false);
   };
 
   return (
@@ -72,6 +94,22 @@ const GetReferred = () => {
           </div>
         </div>
       </div>
+
+      {showPopup && profileData && (
+        <div className="popup-overlay">
+          <div className="popup-box">
+            <h3>Your Profile Data</h3>
+            <p><strong>Current Job Role:</strong> {profileData.current_job_role}</p>
+            <p><strong>Current Company:</strong> {profileData.current_company}</p>
+            <p><strong>Resume:</strong> {profileData.resume}</p>
+          </div>
+          <div className="popup-box-bottom">
+            <button onClick={handleConfirmProfile}>Confirm Profile Details</button>
+            <button onClick={handleUpdateProfile}>Update Profile</button>
+            <button onClick={handleClosePopup}>Close</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
