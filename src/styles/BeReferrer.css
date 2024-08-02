@@ -1,20 +1,125 @@
 .main-container {
-    height: 100vh;
-    display: flex;
-    background-color: black;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-    padding-top: 5vh; /* Space from the top */
-  }
-  
-  .main-notification-container {
-    padding: 2em;
-    background-color: white;
-    height: 85%;
-    width: 75%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Optional: Add some shadow for better visibility */
-    border-radius: 10px; /* Optional: Add some border radius for rounded corners */
-    text-align: center; /* Optional: Center the text inside the container */
-  }
-  
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  font-family: 'Poppins', sans-serif;
+}
+.main-notification-container {
+  border-radius: 0.5em;
+ 
+  background-color: white;
+  height: 85%;
+  width: 75%;
+ /* Optional: Add some shadow for better visibility */
+ /* Optional: Add some border radius for rounded corners */
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-notification{
+ width: 100%;
+ height: 10%;
+ background-color: beige;
+ border-radius: 0.5em;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+}
+
+.navbar-notification-center{
+  background-color: pink;
+  margin-left: 10%;
+  width: 25%;
+  height: 100%;
+  text-align: center;
+
+}
+
+.middle-left{
+  width:40%;
+  height: 100%;
+  background-color: brown;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: row;
+  height: 90%; /* Adjust height as needed */
+}
+
+middle-right {
+  width: 60%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1em;
+}
+
+.request-preview {
+  /* padding: 1em;
+  background-color: lightcoral;
+  margin: 0.5em;
+  border-radius: 0.25em;
+  cursor: pointer; */
+
+  padding:1.2em;
+  margin:1em;
+  font-family: 'Poppins';
+  font-size: 1.2em; /* Increase font size */
+  font-weight: bold; /* Make the text bold */
+  color: white; /* Button text color */
+  background-color: #6a11cb; /* Base color */
+  background-image: linear-gradient(to right, #6a11cb, #8e24aa); /* Gradient */
+  border: none;
+  border-radius: 0.5em; /* Fully rounded */
+  cursor: pointer;
+  box-shadow: 0 0.25em 0.375em rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: all 0.3s ease; /* Smooth transition for hover effects */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.request-preview:hover {
+  background-color: darkred;
+  color: white;
+}
+
+.request-details {
+  text-align: left;
+}
+
+.no-selection {
+  color: gray;
+}
+
+.job-details{
+  padding: 1em;
+  margin: 25%;
+  width: 97%;
+  height: 80%;
+  background-color: red;
+  border-radius: 0.5em;
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+
+
+.job-details p {
+  margin: 0.5em 0;
+  font-size: 1em;
+  color: #333;
+}
+
+.job-details a {
+  color: #6a11cb;
+  text-decoration: none;
+}
+
+.job-details a:hover {
+  text-decoration: underline;
+}
