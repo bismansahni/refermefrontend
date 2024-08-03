@@ -135,8 +135,19 @@
   
 
 
-.ineditable {
-  cursor: not-allowed;
-  opacity: 0.2;
-  caret-color: red;
-}
+  .overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #EAD9FC;
+    z-index: 9999; /* Ensure it is above all other elements */
+  }
+  
+  
+  .ineditable {
+    cursor: not-allowed;
+    opacity: 0;
+    background-color: #f0f0f0;
+  }
