@@ -1,53 +1,60 @@
 
 
-
 // import React, { useState, useEffect } from 'react';
-// import { updateProfile, getProfile } from '../services/api';
+// import { updateProfile } from '../services/api';
 // import '../styles/UpdateProfile.css';
-// import { useNavigate } from 'react-router-dom';
+// import { useLocation, useNavigate } from 'react-router-dom';
 // import { toast, ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
 // import '../styles/Toastify.css';
 
 // const UpdateProfile = () => {
+//   const location = useLocation();
+//   const navigate = useNavigate();
+//   const profileData = location.state?.profileData || {};
+
 //   const [formData, setFormData] = useState({
-//     current_job_role: '',
-//     current_company: '',
-//     resume: ''
+//     current_job_role: profileData.current_job_role || '',
+//     current_company: profileData.current_company || '',
+//     resume: profileData.resume || ''
 //   });
 
-//   const [isEditable, setIsEditable] = useState(false);
+//   const hasUpdatedProfile = profileData.current_job_role || profileData.current_company || profileData.resume;
 
-//   const navigate = useNavigate();
+//   const [isEditable, setIsEditable] = useState(!hasUpdatedProfile);
 
 //   useEffect(() => {
-//     const token = localStorage.getItem('token');
-//     if (!token) {
-//       navigate('/login');
-//     } else {
-//       const fetchProfile = async () => {
-//         try {
-//           const response = await getProfile(token);
-//           setFormData(response); // Assuming response contains the profile data
-//           setIsEditable(false);
-//         } catch (error) {
-//           console.error('Failed to fetch profile data:', error);
-//         }
-//       };
-//       fetchProfile();
+//     if (!profileData) {
+//       navigate('/dashboard');
 //     }
-//   }, [navigate]);
+//   }, [profileData, navigate]);
 
 //   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+//   const validateResumeLink = (resume) => {
+//     const re = /^(ftp|http|https):\/\/[^ "]+$/;
+//     return re.test(String(resume).toLowerCase());
+//   }
+
 //   const onSubmit = async e => {
 //     e.preventDefault();
+
+//     if (!formData.current_job_role || !formData.current_company || !formData.resume) {
+//       toast.error("All fields are required");
+//       return;
+//     }
+
+//     if (!validateResumeLink(formData.resume)) {
+//       toast.error('Please enter a valid resume link');
+//       return;
+//     }
+
 //     const token = localStorage.getItem('token');
 //     if (token) {
 //       try {
 //         const response = await updateProfile(token, formData);
 //         console.log('Profile update successful:', response);
-//         toast.success('Profile updated successfully!',{icon:false});
+//         toast.success('Profile updated successfully!', { icon: false });
 //         setIsEditable(false);
 //       } catch (error) {
 //         console.error('Profile update failed:', error);
@@ -124,6 +131,7 @@
 
 
 
+
 import React, { useState, useEffect } from 'react';
 import { updateProfile } from '../services/api';
 import '../styles/UpdateProfile.css';
@@ -143,7 +151,9 @@ const UpdateProfile = () => {
     resume: profileData.resume || ''
   });
 
-  const [isEditable, setIsEditable] = useState(false);
+  const hasUpdatedProfile = profileData.current_job_role || profileData.current_company || profileData.resume;
+
+  const [isEditable, setIsEditable] = useState(!hasUpdatedProfile);
 
   useEffect(() => {
     if (!profileData) {
@@ -153,8 +163,24 @@ const UpdateProfile = () => {
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
+  const validateResumeLink = (resume) => {
+    const re = /^(ftp|http|https):\/\/[^ "]+$/;
+    return re.test(String(resume).toLowerCase());
+  }
+
   const onSubmit = async e => {
     e.preventDefault();
+
+    if (!formData.current_job_role || !formData.current_company || !formData.resume) {
+      toast.error("All fields are required");
+      return;
+    }
+
+    if (!validateResumeLink(formData.resume)) {
+      toast.error('Please enter a valid resume link');
+      return;
+    }
+
     const token = localStorage.getItem('token');
     if (token) {
       try {
@@ -194,6 +220,7 @@ const UpdateProfile = () => {
                   onChange={onChange} 
                   required 
                   disabled={!isEditable}
+                  className={!isEditable ? 'dimmed' : ''}
                 />
               </div>
               <div className="form-group">
@@ -206,6 +233,7 @@ const UpdateProfile = () => {
                   onChange={onChange} 
                   required 
                   disabled={!isEditable}
+                  className={!isEditable ? 'dimmed' : ''}
                 />
               </div>
               <div className="form-group">
@@ -218,6 +246,7 @@ const UpdateProfile = () => {
                   onChange={onChange} 
                   required 
                   disabled={!isEditable}
+                  className={!isEditable ? 'dimmed' : ''}
                 />
               </div>
             </form>
