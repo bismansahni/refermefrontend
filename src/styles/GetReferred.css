@@ -133,3 +133,10 @@
     animation: slideLeft 0.5s forwards;
   }
   
+
+
+.ineditable {
+  cursor: not-allowed;
+  opacity: 0.2;
+  caret-color: red;
+}

@@ -79,10 +79,10 @@ const Dashboard = () => {
         </div>
         <div className="bottom-box">
           <div className="left-box">
-            <button onClick={() => navigate('/be-a-referrer')}>Be a Referrer</button>
+            <button onClick={() => navigate('/be-a-referrer',{ state: { profileData } })}>Be a Referrer</button>
           </div>
           <div className="right-box">
-            <button onClick={() => navigate('/get-referred')}>Get Referred</button>
+          <button onClick={() => navigate('/get-referred', { state: { profileData } })}>Get Referred</button>
           </div>
         </div>
       </div>
