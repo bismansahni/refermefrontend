@@ -1,5 +1,6 @@
 
 
+
 // import React, { useState, useEffect } from 'react';
 // import { updateProfile } from '../services/api';
 // import '../styles/UpdateProfile.css';
@@ -88,6 +89,7 @@
 //                   onChange={onChange} 
 //                   required 
 //                   disabled={!isEditable}
+//                   className={!isEditable ? 'dimmed' : ''}
 //                 />
 //               </div>
 //               <div className="form-group">
@@ -100,6 +102,7 @@
 //                   onChange={onChange} 
 //                   required 
 //                   disabled={!isEditable}
+//                   className={!isEditable ? 'dimmed' : ''}
 //                 />
 //               </div>
 //               <div className="form-group">
@@ -112,6 +115,7 @@
 //                   onChange={onChange} 
 //                   required 
 //                   disabled={!isEditable}
+//                   className={!isEditable ? 'dimmed' : ''}
 //                 />
 //               </div>
 //             </form>
@@ -131,7 +135,6 @@
 
 
 
-
 import React, { useState, useEffect } from 'react';
 import { updateProfile } from '../services/api';
 import '../styles/UpdateProfile.css';
@@ -139,19 +142,20 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import '../styles/Toastify.css';
+import { useProfile } from '../Context/ProfileContext'; // Import the useProfile hook
 
 const UpdateProfile = () => {
   const location = useLocation();
   const navigate = useNavigate();
-  const profileData = location.state?.profileData || {};
+  const { profileData, updateProfileData } = useProfile(); // Destructure the profileData and updateProfileData from the context
 
   const [formData, setFormData] = useState({
-    current_job_role: profileData.current_job_role || '',
-    current_company: profileData.current_company || '',
-    resume: profileData.resume || ''
+    current_job_role: profileData?.current_job_role || '',
+    current_company: profileData?.current_company || '',
+    resume: profileData?.resume || ''
   });
 
-  const hasUpdatedProfile = profileData.current_job_role || profileData.current_company || profileData.resume;
+  const hasUpdatedProfile = profileData?.current_job_role || profileData?.current_company || profileData?.resume;
 
   const [isEditable, setIsEditable] = useState(!hasUpdatedProfile);
 
@@ -187,6 +191,7 @@ const UpdateProfile = () => {
         const response = await updateProfile(token, formData);
         console.log('Profile update successful:', response);
         toast.success('Profile updated successfully!', { icon: false });
+        updateProfileData(response); // Update the context with the new profile data
         setIsEditable(false);
       } catch (error) {
         console.error('Profile update failed:', error);

@@ -1,11 +1,14 @@
 
+
+
 // import React, { useState, useEffect } from 'react';
-// import { useNavigate, useLocation } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 // import { requestReferral } from '../services/api';
 // import { toast, ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-// import '../styles/Register.css';
+// import '../styles/GetReferred.css';
 // import '../styles/Popup.css'; // Ensure you have this CSS file
+// import { useProfile } from '../Context/ProfileContext'; // Import the useProfile hook
 
 // const GetReferred = () => {
 //   const [formData, setFormData] = useState({
@@ -13,15 +16,16 @@
 //     job_url: ''
 //   });
 
-//   const location = useLocation();
 //   const navigate = useNavigate();
-//   const profileData = location.state?.profileData || {};
+//   const { profileData, fetchProfileData } = useProfile(); // Destructure the profileData and fetchProfileData from the context
 
 //   const [showPopup, setShowPopup] = useState(false);
 //   const [showForm, setShowForm] = useState(true);
 //   const [isLoading, setIsLoading] = useState(false);
 //   const [isEditable, setIsEditable] = useState(true); // Add state to control editable status
 //   const [animation, setAnimation] = useState('');
+//   const [showOverlay, setShowOverlay] = useState(false); // Add state to control overlay visibility
+//   const [toastShown, setToastShown] = useState(false); // Add state to track if the toast has been shown
 //   const { company_name, job_url } = formData;
 
 //   useEffect(() => {
@@ -29,36 +33,36 @@
 //     if (!token) {
 //       navigate('/login');
 //     } else {
-//       if (!profileData || !profileData.current_job_role || !profileData.current_company || !profileData.resume) {
-//         toast.error(
-//           // <div>
-//           //   Please update your profile first.
-//           //   <button
-//           //     onClick={() => navigate('/update-profile', { state: { profileData } })}
-//           //     style={{ marginLeft: '10px', color: 'blue', textDecoration: 'underline', background: 'none', border: 'none', cursor: 'pointer' }}
-//           //   >
-//           //     Update Profile
-//           //   </button>
-//           // </div>,
-//           <div>
-//   Please update your profile first.
-//   <a
-//     href="/update-profile"
-//     onClick={(e) => {
-//       e.preventDefault();
-//       navigate('/update-profile', { state: { profileData } });
-//     }}
-//     style={{ marginLeft: '10px', color: 'blue', textDecoration: 'underline', cursor: 'pointer' ,textAlign: 'right' }}
-//   >
-//     Update Profile
-//   </a>
-// </div>,
-//           { autoClose: false, closeOnClick: false, draggable: false, closeButton: false }
-//         );
-//         setIsEditable(false); // Make form ineditable
-//       }
+//       fetchProfileData(token); // Fetch profile data using the context
 //     }
-//   }, [navigate, profileData]);
+//   }, [navigate, fetchProfileData]);
+
+//   useEffect(() => {
+//     if (!toastShown && (!profileData || !profileData.current_job_role || !profileData.current_company || !profileData.resume)) {
+//       toast.error(
+//         <div>
+//           Please update your profile first.
+//           <a
+//             href="/update-profile"
+//             onClick={(e) => {
+//               e.preventDefault();
+//               navigate('/update-profile');
+//             }}
+//             style={{ marginLeft: '10px', color: 'blue', textDecoration: 'underline', cursor: 'pointer', textAlign: 'right' }}
+//           >
+//             Update Profile
+//           </a>
+//         </div>,
+//         { autoClose: false, closeOnClick: false, draggable: false, closeButton: false }
+//       );
+//       setIsEditable(false); // Make form ineditable
+//       setShowOverlay(true); // Show overlay
+//       setToastShown(true); // Set toastShown to true
+//     } else {
+//       setIsEditable(true); // Make form editable if profile is complete
+//       setShowOverlay(false); // Hide overlay
+//     }
+//   }, [profileData, navigate, toastShown]);
 
 //   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -115,17 +119,14 @@
 //     }, 5000); // Adjust the delay as needed
 //   };
 
-//   const handleUpdateProfile = () => {
-//     navigate('/update-profile', { state: { profileData } });
-//   };
-
 //   const handleClosePopup = () => {
 //     setShowPopup(false);
 //   };
 
 //   return (
 //     <div className={`main-register-container ${animation}`}>
-//       <ToastContainer />
+//       <ToastContainer style={{ zIndex: 10000 }} />
+//       {showOverlay && <div className="overlay"></div>}
 //       {showForm && (
 //         <div className="register-box">
 //           <div className="register-box-left"></div>
@@ -187,7 +188,7 @@
 //           </div>
 //           <div className="popup-box-bottom">
 //             <button onClick={handleConfirmProfile}>Confirm Profile Details</button>
-//             <button onClick={handleUpdateProfile}>Update Profile</button>
+//             <button onClick={() => navigate('/update-profile')}>Update Profile</button>
 //             <button onClick={handleClosePopup}>Close</button>
 //           </div>
 //         </div>
@@ -197,6 +198,9 @@
 // };
 
 // export default GetReferred;
+
+
+
 
 
 
@@ -227,6 +231,7 @@ const GetReferred = () => {
   const [isEditable, setIsEditable] = useState(true); // Add state to control editable status
   const [animation, setAnimation] = useState('');
   const [showOverlay, setShowOverlay] = useState(false); // Add state to control overlay visibility
+  const [toastShown, setToastShown] = useState(false); // Add state to track if the toast has been shown
   const { company_name, job_url } = formData;
 
   useEffect(() => {
@@ -235,28 +240,31 @@ const GetReferred = () => {
       navigate('/login');
     } else {
       if (!profileData || !profileData.current_job_role || !profileData.current_company || !profileData.resume) {
-        toast.error(
-          <div>
-            Please update your profile first.
-            <a
-              href="/update-profile"
-              onClick={(e) => {
-                e.preventDefault();
-                navigate('/update-profile', { state: { profileData } });
-              }}
-              style={{ marginLeft: '10px', color: 'blue', textDecoration: 'underline', cursor: 'pointer', textAlign: 'right' }}
-            >
-              Update Profile
-            </a>
-          </div>,
-          { autoClose: false, closeOnClick: false, draggable: false, closeButton: false }
-        );
+        if (!toastShown) {
+          toast.error(
+            <div>
+              Please update your profile first.
+              <a
+                href="/update-profile"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate('/update-profile', { state: { profileData } });
+                }}
+                style={{ marginLeft: '10px', color: 'blue', textDecoration: 'underline', cursor: 'pointer', textAlign: 'right' }}
+              >
+                Update Profile
+              </a>
+            </div>,
+            { autoClose: false, closeOnClick: false, draggable: false, closeButton: false }
+          );
+          setToastShown(true);
+        }
         setIsEditable(false); // Make form ineditable
         setShowOverlay(true); // Show overlay
         return;
       }
     }
-  }, [navigate, profileData]);
+  }, [navigate, profileData, toastShown]);
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
