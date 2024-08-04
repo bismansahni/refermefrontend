@@ -265,7 +265,7 @@ const UpdateProfile = () => {
           </div>
           <div className="button-box">
             <button type="submit" onClick={isEditable ? onSubmit : onButtonClick}>
-              {isEditable ? 'Update Profile' : 'Update Profile Again'}
+              {isEditable ? 'Update Profile' : 'Edit Profile'}
             </button>
           </div>
         </div>
