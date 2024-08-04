@@ -44,14 +44,14 @@ const Dashboard = () => {
         <div className="navbar"> 
           <div className="navbar-left"></div>
           <div className="navbar-right">
-            <h2>
+            <h2> <u>
               {/* Account Settings */}
               <span 
                 className={`dropdown-arrow ${dropdownVisible ? 'rotate' : ''}`}
                 onClick={toggleDropdown}
               >
                 Account Settings ▼
-              </span>
+              </span> </u>
             </h2>
             <div className={`dropdown ${dropdownVisible ? 'show-dropdown' : ''}`}>
               {dropdownItems.map((item, index) => (
