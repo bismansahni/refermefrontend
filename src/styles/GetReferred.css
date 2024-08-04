@@ -1,11 +1,28 @@
-.main-register-container {
+ .main-register-container {
     height: 100vh;
     display: flex;
     background-color: #EAD9FC;
+   
     justify-content: center;
     align-items: center;
     font-family: 'Poppins';
+   
+   
   }
+
+  .main-register-container-image {
+    position: absolute; /* Position it absolutely within the main container */
+    top: 0.5%;
+    left: 0.5%;
+    width: 4%;
+    height: 5.5%;
+    /* background-color: black; */
+    background-image: url('../images/HOME.png');
+    background-size: cover; /* Ensure the image covers the entire div */
+    background-position: center; /* Center the image */
+}
+
+
   
   .register-box {
     display: flex;
@@ -151,3 +168,17 @@
     opacity: 0;
     background-color: #f0f0f0;
   }
+
+  .home-icon {
+    width: 1%; 
+    height: 1%; 
+    cursor: pointer;
+    position: absolute;
+    top: 1%; 
+    left: 1%; 
+    transition: transform 0.3s ease-in-out; 
+}
+
+.home-icon:hover {
+    transform: scale(1.1); 
+} 

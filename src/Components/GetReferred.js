@@ -1,14 +1,12 @@
 
-
-
 // import React, { useState, useEffect } from 'react';
-// import { useNavigate } from 'react-router-dom';
+// import { useNavigate, useLocation } from 'react-router-dom';
 // import { requestReferral } from '../services/api';
 // import { toast, ToastContainer } from 'react-toastify';
 // import 'react-toastify/dist/ReactToastify.css';
-// import '../styles/GetReferred.css';
-// import '../styles/Popup.css'; // Ensure you have this CSS file
-// import { useProfile } from '../Context/ProfileContext'; // Import the useProfile hook
+// import '../styles/Register.css';
+// import '../styles/Popup.css'; 
+// import HOME from '../images/HOME.webp'
 
 // const GetReferred = () => {
 //   const [formData, setFormData] = useState({
@@ -16,8 +14,9 @@
 //     job_url: ''
 //   });
 
+//   const location = useLocation();
 //   const navigate = useNavigate();
-//   const { profileData, fetchProfileData } = useProfile(); // Destructure the profileData and fetchProfileData from the context
+//   const profileData = location.state?.profileData || {};
 
 //   const [showPopup, setShowPopup] = useState(false);
 //   const [showForm, setShowForm] = useState(true);
@@ -33,36 +32,32 @@
 //     if (!token) {
 //       navigate('/login');
 //     } else {
-//       fetchProfileData(token); // Fetch profile data using the context
+//       if (!profileData || !profileData.current_job_role || !profileData.current_company || !profileData.resume) {
+//         if (!toastShown) {
+//           toast.error(
+//             <div>
+//               Please update your profile first.
+//               <a
+//                 href="/update-profile"
+//                 onClick={(e) => {
+//                   e.preventDefault();
+//                   navigate('/update-profile', { state: { profileData } });
+//                 }}
+//                 style={{ marginLeft: '10px', color: 'blue', textDecoration: 'underline', cursor: 'pointer', textAlign: 'right' }}
+//               >
+//                 Update Profile
+//               </a>
+//             </div>,
+//             { autoClose: false, closeOnClick: false, draggable: false, closeButton: false }
+//           );
+//           setToastShown(true);
+//         }
+//         setIsEditable(false); // Make form ineditable
+//         setShowOverlay(true); // Show overlay
+//         return;
+//       }
 //     }
-//   }, [navigate, fetchProfileData]);
-
-//   useEffect(() => {
-//     if (!toastShown && (!profileData || !profileData.current_job_role || !profileData.current_company || !profileData.resume)) {
-//       toast.error(
-//         <div>
-//           Please update your profile first.
-//           <a
-//             href="/update-profile"
-//             onClick={(e) => {
-//               e.preventDefault();
-//               navigate('/update-profile');
-//             }}
-//             style={{ marginLeft: '10px', color: 'blue', textDecoration: 'underline', cursor: 'pointer', textAlign: 'right' }}
-//           >
-//             Update Profile
-//           </a>
-//         </div>,
-//         { autoClose: false, closeOnClick: false, draggable: false, closeButton: false }
-//       );
-//       setIsEditable(false); // Make form ineditable
-//       setShowOverlay(true); // Show overlay
-//       setToastShown(true); // Set toastShown to true
-//     } else {
-//       setIsEditable(true); // Make form editable if profile is complete
-//       setShowOverlay(false); // Hide overlay
-//     }
-//   }, [profileData, navigate, toastShown]);
+//   }, [navigate, profileData, toastShown]);
 
 //   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -119,6 +114,10 @@
 //     }, 5000); // Adjust the delay as needed
 //   };
 
+//   const handleUpdateProfile = () => {
+//     navigate('/update-profile', { state: { profileData } });
+//   };
+
 //   const handleClosePopup = () => {
 //     setShowPopup(false);
 //   };
@@ -128,7 +127,10 @@
 //       <ToastContainer style={{ zIndex: 10000 }} />
 //       {showOverlay && <div className="overlay"></div>}
 //       {showForm && (
+       
+       
 //         <div className="register-box">
+          
 //           <div className="register-box-left"></div>
 //           <div className={`register-box-right ${!isEditable ? 'ineditable' : ''}`}>
 //             <div className="heading-box">
@@ -188,7 +190,7 @@
 //           </div>
 //           <div className="popup-box-bottom">
 //             <button onClick={handleConfirmProfile}>Confirm Profile Details</button>
-//             <button onClick={() => navigate('/update-profile')}>Update Profile</button>
+//             <button onClick={handleUpdateProfile}>Update Profile</button>
 //             <button onClick={handleClosePopup}>Close</button>
 //           </div>
 //         </div>
@@ -201,19 +203,14 @@
 
 
 
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { requestReferral } from '../services/api';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import '../styles/Register.css';
+import '../styles/GetReferred.css';
 import '../styles/Popup.css'; // Ensure you have this CSS file
+
 
 const GetReferred = () => {
   const [formData, setFormData] = useState({
@@ -228,10 +225,10 @@ const GetReferred = () => {
   const [showPopup, setShowPopup] = useState(false);
   const [showForm, setShowForm] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
-  const [isEditable, setIsEditable] = useState(true); // Add state to control editable status
+  const [isEditable, setIsEditable] = useState(true); 
   const [animation, setAnimation] = useState('');
-  const [showOverlay, setShowOverlay] = useState(false); // Add state to control overlay visibility
-  const [toastShown, setToastShown] = useState(false); // Add state to track if the toast has been shown
+  const [showOverlay, setShowOverlay] = useState(false); 
+  const [toastShown, setToastShown] = useState(false); 
   const { company_name, job_url } = formData;
 
   useEffect(() => {
@@ -316,7 +313,7 @@ const GetReferred = () => {
     setTimeout(() => {
       setFormData({
         company_name: '',
-        job_url: ''
+        job_url
       });
     }, 5000); // Adjust the delay as needed
   };
@@ -329,61 +326,71 @@ const GetReferred = () => {
     setShowPopup(false);
   };
 
+  const handleDivClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <div className={`main-register-container ${animation}`}>
       <ToastContainer style={{ zIndex: 10000 }} />
       {showOverlay && <div className="overlay"></div>}
       {showForm && (
-        <div className="register-box">
-          <div className="register-box-left"></div>
-          <div className={`register-box-right ${!isEditable ? 'ineditable' : ''}`}>
-            <div className="heading-box">
-              <h2>Request Referral</h2>
-            </div>
-            <div className="form-box">
-              <form onSubmit={onSubmit}>
-                <div className="form-group">
-                  <label htmlFor="company_name">Company Name</label>
-                  <input
-                    type="text"
-                    id="company_name"
-                    name="company_name"
-                    value={company_name}
-                    onChange={onChange}
-                    required
-                    disabled={!isEditable} // Disable input if form is not editable
-                    className={!isEditable ? 'ineditable' : ''} // Apply ineditable class if not editable
-                  />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="job_url">Job URL</label>
-                  <input
-                    type="text"
-                    id="job_url"
-                    name="job_url"
-                    value={job_url}
-                    onChange={onChange}
-                    required
-                    disabled={!isEditable} // Disable input if form is not editable
-                    className={!isEditable ? 'ineditable' : ''} // Apply ineditable class if not editable
-                  />
-                </div>
-              </form>
-            </div>
-            <div className="button-box">
-              <button
-                type="submit"
-                onClick={onSubmit}
-                disabled={!isEditable} // Disable button if form is not editable
-                className={!isEditable ? 'ineditable' : ''} // Apply ineditable class if not editable
-              >
-                Request Referral
-              </button>
+        <>
+          {/* <div className="main-register-container-image"> */}
+          <div className="main-register-container-image" onClick={handleDivClick}>
+         
+          </div>
+          <div className="register-box">
+            <div className="register-box-left"></div>
+            <div className={`register-box-right ${!isEditable ? 'ineditable' : ''}`}>
+              <div className="heading-box">
+                <h2>Request Referral</h2>
+              </div>
+              <div className="form-box">
+                <form onSubmit={onSubmit}>
+                  <div className="form-group">
+                    <label htmlFor="company_name">Company Name</label>
+                    <input
+                      type="text"
+                      id="company_name"
+                      name="company_name"
+                      value={company_name}
+                      onChange={onChange}
+                      required
+                      disabled={!isEditable} // Disable input if form is not editable
+                      className={!isEditable ? 'ineditable' : ''} // Apply ineditable class if not editable
+                    />
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="job_url">Job URL</label>
+                    <input
+                      type="text"
+                      id="job_url"
+                      name="job_url"
+                      value={job_url}
+                      onChange={onChange}
+                      required
+                      disabled={!isEditable} // Disable input if form is not editable
+                      className={!isEditable ? 'ineditable' : ''} // Apply ineditable class if not editable
+                    />
+                  </div>
+                </form>
+              </div>
+              <div className="button-box">
+                <button
+                  type="submit"
+                  onClick={onSubmit}
+                  disabled={!isEditable} // Disable button if form is not editable
+                  className={!isEditable ? 'ineditable' : ''} // Apply ineditable class if not editable
+                >
+                  Request Referral
+                </button>
+              </div>
             </div>
           </div>
-        </div>
+         
+        </>
       )}
-
       {showPopup && profileData && (
         <div className="popup-overlay">
           <div className="popup-box">
@@ -400,6 +407,7 @@ const GetReferred = () => {
         </div>
       )}
     </div>
+    
   );
 };
 
