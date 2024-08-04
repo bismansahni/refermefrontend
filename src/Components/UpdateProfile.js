@@ -204,9 +204,16 @@ const UpdateProfile = () => {
     setIsEditable(true);
   };
 
+  const handleDivClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <div className="main-register-container">
       <ToastContainer />
+      <div className="main-register-container-image" onClick={handleDivClick}>
+         
+          </div>
       <div className="register-box">
         <div className="register-box-left"></div>
         <div className="register-box-right">

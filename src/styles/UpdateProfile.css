@@ -7,6 +7,18 @@
     font-family: 'Poppins';
   }
 
+  .main-register-container-image {
+    position: absolute; /* Position it absolutely within the main container */
+    top: 0.5%;
+    left: 0.5%;
+    width: 4%;
+    height: 5.5%;
+    /* background-color: black; */
+    background-image: url('../images/HOME.png');
+    background-size: cover; /* Ensure the image covers the entire div */
+    background-position: center; /* Center the image */
+  }
+
 
   .updated-profile {
     display: flex;

@@ -121,6 +121,7 @@ const BeReferrer = () => {
   const { profileData, fetchProfileData } = useProfile(); // Destructure the profileData and fetchProfileData from the context
 
   useEffect(() => {
+    
     const fetchNotifications = async () => {
       try {
         const token = localStorage.getItem('token'); // Retrieve the token from localStorage
@@ -159,10 +160,15 @@ const BeReferrer = () => {
     fetchNotifications();
   }, [navigate, profileData]);
 
+  const handleDivClick = () => {
+    navigate('/dashboard');
+  };
+
   return (
     <div className="main-container">
       <ToastContainer />
       <div className={`main-notification-container ${!isEditable ? 'ineditable' : ''}`}>
+      <div className="main-register-container-image" onClick={handleDivClick}> </div>
         <div className="navbar-notification">
           <div className="navbar-notification-center">
             <h1>Referral Requests</h1>
