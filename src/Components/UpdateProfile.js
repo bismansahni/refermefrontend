@@ -24,11 +24,7 @@ const UpdateProfile = () => {
 
   const [isEditable, setIsEditable] = useState(!hasUpdatedProfile);
 
-  useEffect(() => {
-    if (!profileData) {
-      navigate('/dashboard');
-    }
-  }, [profileData, navigate]);
+ 
 
   const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
@@ -51,6 +47,9 @@ const UpdateProfile = () => {
     }
 
     const token = localStorage.getItem('token');
+    if(!token){
+      navigate('login');
+    }
     if (token) {
       try {
         const response = await updateProfile(token, formData);

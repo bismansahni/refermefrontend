@@ -20,6 +20,7 @@ const BeReferrer = () => {
       try {
         const token = localStorage.getItem('token'); 
         if (!token) {
+          navigate('/login');
           throw new Error('No token found');
         }
 
