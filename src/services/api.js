@@ -40,3 +40,18 @@ export const getProfile = async (token) => {
   });
   return response.data;
 };
+
+
+export const getReferrals = async (token) => {
+  try {
+    console.log('Fetching referrals with token:', token);
+    const response = await axios.get(`${API_URL}/api/referral`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    console.log('Fetched referrals:', response.data);
+    return response.data.referrals; 
+  } catch (error) {
+    console.error('Error fetching referrals:', error);
+    throw error;
+  }
+};

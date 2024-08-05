@@ -28,6 +28,10 @@ const Dashboard = () => {
     navigate('/login');
   };
 
+  const handleReferralRequests=()=>{
+    navigate('/my-requests')
+  }
+
   const handleProfileSettings = () => {
     setAnimation(styles['slide-left']);
     setTimeout(() => navigate('/update-profile', { state: { profileData } }), 500); 
@@ -35,7 +39,9 @@ const Dashboard = () => {
 
   const dropdownItems = [
     { name: 'Profile Settings', action: handleProfileSettings },
+    { name: 'My Requests', action: handleReferralRequests },
     { name: 'Logout', action: handleLogout },
+   
   ];
 
   console.log(styles); 
