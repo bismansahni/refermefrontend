@@ -14,7 +14,7 @@
     width: 4%;
     height: 5.5%;
     /* background-color: black; */
-    background-image: url('../images/HOME.png');
+    background-image: url('/public/images/HOME.png');
     background-size: cover; /* Ensure the image covers the entire div */
     background-position: center; /* Center the image */
   }
@@ -39,7 +39,7 @@
   
   .register-box-left {
     width: 57%;
-    background-image: url('../images/Logo.webp'); /* Adjust the path to your image */
+    background-image: url('/public/images/Logo.webp'); /* Adjust the path to your image */
   background-size: cover; /* Ensure the image covers the entire div */
   background-position: center; /* Center the image */
   }

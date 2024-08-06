@@ -208,7 +208,7 @@
   
   .register-box-left {
     width: 57%;
-    background-image: url('../images/Logo.webp');
+    background-image: url('/public/images/Logo.webp');
     background-size: cover;
     background-position: center;
   }

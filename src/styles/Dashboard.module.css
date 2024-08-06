@@ -39,7 +39,7 @@
     display: flex; /* Use flexbox for alignment */
     align-items: center; /* Center items vertically */
     padding-left: 2%; /* Add some padding for spacing */
-    background-image: url('../images/ReferMeText.webp');
+    background-image: url('/public/images/ReferMeText.webp');
     background-size: contain; /* Ensure the image fits within the div */
     background-repeat: no-repeat; /* Prevent the image from repeating */
     background-position: center;
